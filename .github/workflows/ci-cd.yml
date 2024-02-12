@@ -1,0 +1,26 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build and Test Frontend
+        working-directory: frontend
+        run: |
+          npm install
+          npm test
+
+      - name: Build and Test Backend
+        working-directory: backend
+        run: |
+          ./gradlew build

@@ -28,6 +28,5 @@ jobs:
           npm test
 
       - name: Build and Test Backend
-        working-directory: backend
         run: |
           ./gradlew build

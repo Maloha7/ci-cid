@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test
+    name: Build, Test and Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -30,3 +30,11 @@ jobs:
       - name: Build and Test Backend
         run: |
           ./gradlew build
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.13.15
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "marius-ci-cd-test-app"
+          heroku_email: "marius.hatland@gmail.com"
+          usedocker: true
